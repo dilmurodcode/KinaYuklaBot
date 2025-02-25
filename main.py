@@ -4,9 +4,15 @@ from aiogram import Bot, Dispatcher, F
 from aiogram.filters import Command
 from aiogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery
 from aiogram.exceptions import TelegramBadRequest
-from kinolar import movies
 
-TOKEN = "7843861621:AAG9hBwl_0Oh9t_9hVO948Kdl8OohyzZHSc"
+movies = {
+    '123': {
+        'poster': 'Slova patsana',
+        'title': 'silovo patasas'
+    }
+}
+
+TOKEN = "7545897814:AAG5IjuEFYqWioKTvWzSIzYdFjlTFFaN9i0"
 bot = Bot(token=TOKEN)
 dp = Dispatcher()
 logging.basicConfig(level=logging.INFO)
@@ -23,7 +29,7 @@ async def is_subscribed(user_id: int) -> bool:
 async def catch_start(message: Message):
     keyboard = InlineKeyboardMarkup(
         inline_keyboard=[
-            [InlineKeyboardButton(text='DevPro', url='https://t.me/dilmurod_leetcode')],
+            [InlineKeyboardButton(text='Code & Coffee', url='https://t.me/dilmurod_leetcode')],
             [InlineKeyboardButton(text='Tekshirish', callback_data='check_subscribe')]
         ]
     )
@@ -36,14 +42,16 @@ async def check_is_subscribed(callback_query: CallbackQuery):
     else:
         keyboard = InlineKeyboardMarkup(
             inline_keyboard=[
-                [InlineKeyboardButton(text='DevPro', url='https://t.me/dilmurod_leetcode')],
+                [InlineKeyboardButton(text='Code & Coffee', url='https://t.me/dilmurod_leetcode')],
                 [InlineKeyboardButton(text='Tekshirish', callback_data='check_subscribe')]
             ]
         )
+        await callback_query.answer("❌ Siz hali obuna bo‘lmadingiz! Iltimos, obuna bo‘ling.", show_alert=True)
         await callback_query.message.edit_text(
-            text="Bo'tdan to'liq foydalanish uchun obuna bo'ling!",
+            text="Bo'tdan to'liq foydalanish uchun kanalga obuna bo'ling!",
             reply_markup=keyboard
         )
+
 
 @dp.message()
 async def send_movie(message: Message):
