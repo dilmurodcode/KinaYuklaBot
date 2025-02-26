@@ -12,7 +12,7 @@ movies = {
     }
 }
 
-TOKEN = "7545897814:AAG5IjuEFYqWioKTvWzSIzYdFjlTFFaN9i0"
+TOKEN = "8101475312:AAFJt-Ys47EZ29cbMW8C8_NGrODjleafbuo"
 bot = Bot(token=TOKEN)
 dp = Dispatcher()
 logging.basicConfig(level=logging.INFO)
